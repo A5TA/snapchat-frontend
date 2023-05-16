@@ -31,7 +31,7 @@ const Chat = () => {
     },[selectedUserId])
 
     const connectToWs = () => {
-        const ws = new WebSocket('ws://localhost:5000')
+        const ws = new WebSocket(`${process.env.REACT_APP_WS_URL}`)
         setWs(ws)
         ws.addEventListener('message', handleMessage)
         ws.addEventListener('close', () => {
