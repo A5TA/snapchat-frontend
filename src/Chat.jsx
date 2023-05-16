@@ -207,17 +207,20 @@ const Chat = () => {
 
             for (const key in onlineUsers) {
                 const arr = onlineUsers[key];
-                const firstItem = arr[0];
                 
-                if (firstItem.includes(query)) {
+                if (Array.isArray(arr) && arr.length > 0) {
+                  const firstItem = arr[0];
+                  
+                  if (typeof firstItem === 'string' && firstItem.includes(query)) {
                     filteredUsersArr.push({
-                    id: key,
-                    username: firstItem,
-                    name: arr[1],
-                    online: true
-                })
+                      id: key,
+                      username: firstItem,
+                      name: arr[1],
+                      online: true
+                    })
+                  }
                 }
-            }
+              }
 
             for (const key in offlineUsers) {
                 const user = offlineUsers[key];
